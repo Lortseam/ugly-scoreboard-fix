@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "uglyscoreboardfix",
+  "version": "${version}",
+  "name": "Ugly Scoreboard Fix",
+  "description": "Hides the ugly scoreboard scores most servers only use for sorting the lines",
+  "authors": [
+    "Lortseam"
+  ],
+  "contact": {
+    "email": "lortseam@gmail.com",
+    "sources": "https://gitlab.com/Lortseam/ugly-scoreboard-fix",
+    "issues": "https://gitlab.com/Lortseam/ugly-scoreboard-fix/-/issues"
+  },
+  "license": "Apache-2.0",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "uglyscoreboardfix.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "minecraft": "1.16.1",
+    "fabricloader": ">=0.7.4"
+  }
+}
