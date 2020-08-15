@@ -1,5 +1,6 @@
 package me.lortseam.uglyscoreboardfix;
 
+import io.github.prospector.modmenu.api.ModMenuApi;
 import lombok.Getter;
 import me.lortseam.completeconfig.CompleteConfig;
 import me.lortseam.completeconfig.ConfigManager;
@@ -10,12 +11,13 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
-public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory {
+public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, ModMenuApi {
 
     private static final String MOD_ID = "uglyscoreboardfix";
     @Getter
     private static UglyScoreboardFix instance;
 
+    @Getter
     private final ConfigManager configManager = CompleteConfig.register(MOD_ID);
     @Getter
     @ConfigEntry
