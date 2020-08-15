@@ -3,7 +3,7 @@
   "id": "uglyscoreboardfix",
   "version": "${version}",
   "name": "Ugly Scoreboard Fix",
-  "description": "Hides the ugly scoreboard scores most servers only use for sorting the lines",
+  "description": "Hides the ugly scoreboard scores only used for sorting the lines",
   "authors": [
     "Lortseam"
   ],
