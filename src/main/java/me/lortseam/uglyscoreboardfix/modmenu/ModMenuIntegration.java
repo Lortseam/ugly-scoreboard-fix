@@ -8,7 +8,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> UglyScoreboardFix.getInstance().getConfigManager().getConfigScreen(parent);
+        return parent -> UglyScoreboardFix.getInstance().getConfigManager().buildScreen(parent);
     }
 
 }

@@ -18,7 +18,7 @@ public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, 
     private static UglyScoreboardFix instance;
 
     @Getter
-    private final ConfigManager configManager = CompleteConfig.register(MOD_ID);
+    private ConfigManager configManager;
     @Getter
     @ConfigEntry
     private boolean enabled = true;
@@ -26,6 +26,7 @@ public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, 
     @Override
     public void onInitializeClient() {
         instance = this;
+        configManager = CompleteConfig.register(MOD_ID);
         configManager.register(this);
     }
 
