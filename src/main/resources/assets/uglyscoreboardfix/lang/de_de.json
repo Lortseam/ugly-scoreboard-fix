@@ -1,4 +1,5 @@
 {
   "config.uglyscoreboardfix.title": "Ugly Scoreboard Fix Konfiguration",
-  "config.uglyscoreboardfix.uglyScoreboardFix.enabled": "Aktiviert"
+  "config.uglyscoreboardfix.uglyScoreboardFix.enabled": "Aktiviert",
+  "config.uglyscoreboardfix.uglyScoreboardFix.consecutiveOrderOnly": "Nur bei aufeinanderfolgender Reihenfolge"
 }
