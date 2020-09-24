@@ -10,7 +10,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.scoreboard.ScoreboardObjective;
-import net.minecraft.scoreboard.ScoreboardPlayerScore;
 
 @Environment(EnvType.CLIENT)
 public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, ModMenuApi {
@@ -22,9 +21,9 @@ public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, 
     @Getter
     private ConfigManager configManager;
     @ConfigEntry
-    private boolean enabled = true;
+    private Type type = Type.CONSECUTIVE_ORDER;
     @ConfigEntry
-    private boolean consecutiveOrderOnly = true;
+    private Hide hide = Hide.SCORES;
 
     @Override
     public void onInitializeClient() {
@@ -33,21 +32,11 @@ public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, 
         configManager.register(this);
     }
 
-    public boolean shouldHideScores(ScoreboardObjective objective) {
-        if (!enabled) {
-            return false;
+    public Hide getHide(ScoreboardObjective objective) {
+        if (!type.test(objective)) {
+            return null;
         }
-        if (consecutiveOrderOnly) {
-            int[] scores = objective.getScoreboard().getAllPlayerScores(objective).stream().mapToInt(ScoreboardPlayerScore::getScore).toArray();
-            if (scores.length >= 2) {
-                for (int i = 1; i < scores.length; i++) {
-                    if (scores[i - 1] + 1 != scores[i]) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
+        return hide;
     }
 
 }
