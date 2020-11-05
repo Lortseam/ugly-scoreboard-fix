@@ -1,5 +1,6 @@
 package me.lortseam.uglyscoreboardfix;
 
+import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import io.github.prospector.modmenu.api.ModMenuApi;
 import lombok.Getter;
 import me.lortseam.completeconfig.CompleteConfig;
@@ -37,6 +38,11 @@ public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, 
             return null;
         }
         return hide;
+    }
+
+    @Override
+    public ConfigScreenFactory<?> getModConfigScreenFactory() {
+        return parent -> UglyScoreboardFix.getInstance().getConfigManager().buildScreen(parent);
     }
 
 }

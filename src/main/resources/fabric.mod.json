@@ -19,7 +19,7 @@
       "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
     ],
     "modmenu": [
-      "me.lortseam.uglyscoreboardfix.modmenu.ModMenuIntegration"
+      "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
     ]
   },
   "mixins": [
