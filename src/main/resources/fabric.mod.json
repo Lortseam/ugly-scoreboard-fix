@@ -19,7 +19,7 @@
       "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
     ],
     "modmenu": [
-      "me.lortseam.uglyscoreboardfix.modmenu.ModMenuIntegration"
+      "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
     ]
   },
   "mixins": [
@@ -29,7 +29,6 @@
     }
   ],
   "depends": {
-    "minecraft": "1.16.3",
     "fabricloader": ">=0.7.4",
     "modmenu": "*"
   }
