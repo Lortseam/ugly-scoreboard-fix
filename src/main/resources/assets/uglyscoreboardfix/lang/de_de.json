@@ -1,10 +1,10 @@
 {
   "config.uglyscoreboardfix.title": "Ugly Scoreboard Fix Konfiguration",
-  "config.uglyscoreboardfix.uglyScoreboardFix.hide": "Verstecke",
-  "config.uglyscoreboardfix.uglyScoreboardFix.hide.scores": "Punkte",
-  "config.uglyscoreboardfix.uglyScoreboardFix.hide.sidebar": "Sidebar",
-  "config.uglyscoreboardfix.uglyScoreboardFix.type": "Typ",
-  "config.uglyscoreboardfix.uglyScoreboardFix.type.always": "Immer",
-  "config.uglyscoreboardfix.uglyScoreboardFix.type.consecutiveOrder": "Aufeinanderfolgende Reihenfolge",
-  "config.uglyscoreboardfix.uglyScoreboardFix.type.disabled": "Deaktiviert"
+  "config.uglyscoreboardfix.config.hide": "Verstecke",
+  "config.uglyscoreboardfix.config.hide.scores": "Punkte",
+  "config.uglyscoreboardfix.config.hide.sidebar": "Sidebar",
+  "config.uglyscoreboardfix.config.type": "Typ",
+  "config.uglyscoreboardfix.config.type.always": "Immer",
+  "config.uglyscoreboardfix.config.type.consecutiveOrder": "Aufeinanderfolgende Reihenfolge",
+  "config.uglyscoreboardfix.config.type.disabled": "Deaktiviert"
 }

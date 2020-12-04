@@ -12,24 +12,21 @@ import net.fabricmc.api.Environment;
 import net.minecraft.scoreboard.ScoreboardObjective;
 
 @Environment(EnvType.CLIENT)
-public class UglyScoreboardFix implements ConfigOwner, ConfigCategory, ModMenuApi {
+public class UglyScoreboardFix implements ConfigOwner, ModMenuApi {
 
+    private static Config config = new Config();
     private static ConfigHandler configHandler;
-    @ConfigEntry
-    private static Type type = Type.CONSECUTIVE_ORDER;
-    @ConfigEntry
-    private static Hide hide = Hide.SCORES;
 
-    public static Hide getHide(ScoreboardObjective objective) {
-        if (!type.test(objective)) {
+    public static Config.Hide determineFix(ScoreboardObjective objective) {
+        if (!config.getType().test(objective)) {
             return null;
         }
-        return hide;
+        return config.getHide();
     }
 
     @Override
     public void onInitializeClientConfig(ConfigBuilder builder) {
-        configHandler = builder.add(this).finish();
+        configHandler = builder.add(config).finish();
     }
 
     @Override
