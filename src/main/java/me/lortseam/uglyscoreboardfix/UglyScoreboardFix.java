@@ -2,21 +2,19 @@ package me.lortseam.uglyscoreboardfix;
 
 import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import io.github.prospector.modmenu.api.ModMenuApi;
-import me.lortseam.completeconfig.CompleteConfig;
-import me.lortseam.completeconfig.ConfigManager;
+import me.lortseam.completeconfig.ConfigBuilder;
+import me.lortseam.completeconfig.ConfigHandler;
 import me.lortseam.completeconfig.api.ConfigCategory;
 import me.lortseam.completeconfig.api.ConfigEntry;
-import net.fabricmc.api.ClientModInitializer;
+import me.lortseam.completeconfig.api.ConfigOwner;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.scoreboard.ScoreboardObjective;
 
 @Environment(EnvType.CLIENT)
-public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, ModMenuApi {
+public class UglyScoreboardFix implements ConfigOwner, ConfigCategory, ModMenuApi {
 
-    private static final String MOD_ID = "uglyscoreboardfix";
-
-    private static ConfigManager configManager;
+    private static ConfigHandler configHandler;
     @ConfigEntry
     private static Type type = Type.CONSECUTIVE_ORDER;
     @ConfigEntry
@@ -30,14 +28,13 @@ public class UglyScoreboardFix implements ClientModInitializer, ConfigCategory, 
     }
 
     @Override
-    public void onInitializeClient() {
-        configManager = CompleteConfig.register(MOD_ID);
-        configManager.register(this);
+    public void onInitializeClientConfig(ConfigBuilder builder) {
+        configHandler = builder.add(this).finish();
     }
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return parent -> configManager.buildScreen(parent);
+        return parent -> configHandler.buildScreen(parent);
     }
 
 }

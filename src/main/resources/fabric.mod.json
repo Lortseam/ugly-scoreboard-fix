@@ -15,7 +15,7 @@
   "license": "Apache-2.0",
   "environment": "client",
   "entrypoints": {
-    "client": [
+    "completeconfig": [
       "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
     ],
     "modmenu": [
