@@ -1,15 +1,19 @@
 package me.lortseam.uglyscoreboardfix;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import me.lortseam.completeconfig.api.ConfigCategory;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Config implements ConfigCategory {
 
     @Getter
+    private static final Config instance = new Config();
+
     private Type type = Type.CONSECUTIVE_ORDER;
-    @Getter
     private Hide hide = Hide.SCORES;
 
     @Override
@@ -17,13 +21,11 @@ public final class Config implements ConfigCategory {
         return true;
     }
 
-    public enum Hide {
-
-        SIDEBAR, SCORES
-
+    public boolean shouldHide(Hide hide, ScoreboardObjective objective) {
+        return hide == this.hide && type.test(objective);
     }
 
-    public enum Type {
+    private enum Type {
 
         ALWAYS() {
             @Override
