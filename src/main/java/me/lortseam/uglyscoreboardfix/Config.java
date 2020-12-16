@@ -13,7 +13,7 @@ public final class Config implements ConfigCategory {
     @Getter
     private static final Config instance = new Config();
 
-    private Type type = Type.CONSECUTIVE_ORDER;
+    private State state = State.AUTO;
     private Hide hide = Hide.SCORES;
 
     @Override
@@ -22,18 +22,18 @@ public final class Config implements ConfigCategory {
     }
 
     public boolean shouldHide(Hide hide, ScoreboardObjective objective) {
-        return hide == this.hide && type.test(objective);
+        return hide == this.hide && state.test(objective);
     }
 
-    private enum Type {
+    private enum State {
 
-        ALWAYS() {
+        ENABLED() {
             @Override
             boolean test(ScoreboardObjective objective) {
                 return true;
             }
         },
-        CONSECUTIVE_ORDER() {
+        AUTO() {
             @Override
             boolean test(ScoreboardObjective objective) {
                 int[] scores = objective.getScoreboard().getAllPlayerScores(objective).stream().mapToInt(ScoreboardPlayerScore::getScore).toArray();
