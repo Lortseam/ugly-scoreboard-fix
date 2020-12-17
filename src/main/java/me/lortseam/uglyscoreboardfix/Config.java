@@ -14,15 +14,15 @@ public final class Config implements ConfigCategory {
     private static final Config instance = new Config();
 
     private State state = State.AUTO;
-    private Hide hide = Hide.SCORES;
+    private HideType hideType = HideType.SCORES;
 
     @Override
     public boolean isConfigPOJO() {
         return true;
     }
 
-    public boolean shouldHide(Hide hide, ScoreboardObjective objective) {
-        return hide == this.hide && state.test(objective);
+    public boolean shouldHide(HideType hideType, ScoreboardObjective objective) {
+        return hideType == this.hideType && state.test(objective);
     }
 
     private enum State {

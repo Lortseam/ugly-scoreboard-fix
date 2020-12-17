@@ -1,8 +1,8 @@
 {
   "config.uglyscoreboardfix.title": "Ugly Scoreboard Fix Konfiguration",
-  "config.uglyscoreboardfix.config.hide": "Verstecke",
-  "config.uglyscoreboardfix.config.hide.scores": "Punkte",
-  "config.uglyscoreboardfix.config.hide.sidebar": "Sidebar",
+  "config.uglyscoreboardfix.config.hideType": "Verstecke",
+  "config.uglyscoreboardfix.config.hideType.scores": "Punkte",
+  "config.uglyscoreboardfix.config.hideType.sidebar": "Sidebar",
   "config.uglyscoreboardfix.config.state": "Status",
   "config.uglyscoreboardfix.config.state.enabled": "Aktiviert",
   "config.uglyscoreboardfix.config.state.auto": "Automatisch",

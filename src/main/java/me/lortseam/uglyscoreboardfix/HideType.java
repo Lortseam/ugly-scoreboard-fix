@@ -1,6 +1,6 @@
 package me.lortseam.uglyscoreboardfix;
 
-public enum Hide {
+public enum HideType {
 
     SIDEBAR, SCORES
 
