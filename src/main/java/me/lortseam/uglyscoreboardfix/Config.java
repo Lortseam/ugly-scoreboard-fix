@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.lortseam.completeconfig.api.ConfigCategory;
+import me.lortseam.completeconfig.api.ConfigEntry;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 
@@ -14,6 +15,7 @@ public final class Config implements ConfigCategory {
     private static final Config instance = new Config();
 
     private State state = State.AUTO;
+    @ConfigEntry("hide")
     private HideType hideType = HideType.SCORES;
 
     @Override
