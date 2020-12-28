@@ -21,13 +21,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    //Fabric API is only required for Cloth Config (required for CompleteConfig) which includes old version (1.16) and crashes
-    //TODO: Update CompleteConfig and remove Fabric API dependency
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.21.0+build.407-1.16"
-    modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
     modApi "com.gitlab.Lortseam:completeconfig:${project.completeconfig_version}"
     include "com.gitlab.Lortseam:completeconfig:${project.completeconfig_version}"
     include "me.shedaniel.cloth:config-2:${project.cloth_config_version}"
+    modImplementation "io.github.prospector:modmenu:${project.modmenu_version}"
 
     compileOnly "org.projectlombok:lombok:${project.lombok_version}"
     annotationProcessor "org.projectlombok:lombok:${project.lombok_version}"
