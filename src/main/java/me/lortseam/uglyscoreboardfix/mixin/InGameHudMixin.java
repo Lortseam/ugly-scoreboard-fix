@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class)
-public abstract class MixinInGameHud {
+public abstract class InGameHudMixin {
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
     private void uglyscoreboardfix$modifySidebar(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
