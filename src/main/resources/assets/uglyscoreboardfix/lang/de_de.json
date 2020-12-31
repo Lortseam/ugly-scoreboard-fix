@@ -3,6 +3,7 @@
   "config.uglyscoreboardfix.config.hide": "Verstecke",
   "config.uglyscoreboardfix.config.hide.scores": "Punkte",
   "config.uglyscoreboardfix.config.hide.sidebar": "Sidebar",
+  "config.uglyscoreboardfix.config.hide.tooltip": "Bestimmt, ob nur die Punkte (rote Zahlen an der rechten Seite) oder die Sidebar komplett ausgeblendet wird.",
   "config.uglyscoreboardfix.config.state": "Status",
   "config.uglyscoreboardfix.config.state.enabled": "Aktiviert",
   "config.uglyscoreboardfix.config.state.auto": "Automatisch",

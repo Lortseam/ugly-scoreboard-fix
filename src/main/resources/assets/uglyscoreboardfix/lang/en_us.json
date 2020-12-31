@@ -3,6 +3,7 @@
   "config.uglyscoreboardfix.config.hide": "Hide",
   "config.uglyscoreboardfix.config.hide.scores": "Scores",
   "config.uglyscoreboardfix.config.hide.sidebar": "Sidebar",
+  "config.uglyscoreboardfix.config.hide.tooltip": "Whether to hide the scores only (red numbers on the right side) or the sidebar completely.",
   "config.uglyscoreboardfix.config.state": "State",
   "config.uglyscoreboardfix.config.state.enabled": "Enabled",
   "config.uglyscoreboardfix.config.state.auto": "Auto",
