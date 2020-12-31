@@ -17,6 +17,8 @@ public final class Config implements ConfigCategory {
     private State state = State.AUTO;
     @ConfigEntry("hide")
     private HideType hideType = HideType.SCORES;
+    @Getter
+    private SidebarPosition position = SidebarPosition.RIGHT;
 
     @Override
     public boolean isConfigPOJO() {

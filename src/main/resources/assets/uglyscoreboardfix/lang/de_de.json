@@ -11,5 +11,8 @@
   "config.uglyscoreboardfix.config.state.tooltip.0": "Bestimmt, ob diese Mod aktiviert ist oder nicht.",
   "config.uglyscoreboardfix.config.state.tooltip.1": "Aktiviert - Immer eingeschaltet.",
   "config.uglyscoreboardfix.config.state.tooltip.2": "Automatisch - Nur bei einer aufeinanderfolgenden Reihenfolge der Punkte aktiviert.",
-  "config.uglyscoreboardfix.config.state.tooltip.3": "Deaktiviert - Ausgeschaltet."
+  "config.uglyscoreboardfix.config.state.tooltip.3": "Deaktiviert - Ausgeschaltet.",
+  "config.uglyscoreboardfix.config.position": "Position der Sidebar",
+  "config.uglyscoreboardfix.config.position.right": "Rechts",
+  "config.uglyscoreboardfix.config.position.left": "Links"
 }
