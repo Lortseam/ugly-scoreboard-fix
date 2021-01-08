@@ -8,7 +8,7 @@
   "config.uglyscoreboardfix.config.state.enabled": "Enabled",
   "config.uglyscoreboardfix.config.state.auto": "Auto",
   "config.uglyscoreboardfix.config.state.disabled": "Disabled",
-  "config.uglyscoreboardfix.config.state.tooltip.0": "Defines whether this mod is active or not.",
+  "config.uglyscoreboardfix.config.state.tooltip.0": "Defines whether to hide the selected scoreboard part or not.",
   "config.uglyscoreboardfix.config.state.tooltip.1": "Enabled - Always enabled.",
   "config.uglyscoreboardfix.config.state.tooltip.2": "Auto - Enabled only when scores are in consecutive order.",
   "config.uglyscoreboardfix.config.state.tooltip.3": "Disabled - Disabled.",
