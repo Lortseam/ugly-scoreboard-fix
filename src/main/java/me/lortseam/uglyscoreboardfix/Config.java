@@ -16,7 +16,7 @@ public final class Config implements ConfigCategory {
 
     private State state = State.AUTO;
     @ConfigEntry("hide")
-    private HideType hideType = HideType.SCORES;
+    private HidePart hidePart = HidePart.SCORES;
     @Getter
     private SidebarPosition position = SidebarPosition.RIGHT;
 
@@ -25,8 +25,8 @@ public final class Config implements ConfigCategory {
         return true;
     }
 
-    public boolean shouldHide(HideType hideType, ScoreboardObjective objective) {
-        return hideType == this.hideType && state.test(objective);
+    public boolean shouldHide(HidePart hidePart, ScoreboardObjective objective) {
+        return hidePart == this.hidePart && state.test(objective);
     }
 
     private enum State {

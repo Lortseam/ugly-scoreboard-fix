@@ -1,7 +1,7 @@
 package me.lortseam.uglyscoreboardfix.mixin;
 
 import me.lortseam.uglyscoreboardfix.Config;
-import me.lortseam.uglyscoreboardfix.HideType;
+import me.lortseam.uglyscoreboardfix.HidePart;
 import me.lortseam.uglyscoreboardfix.SidebarPosition;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -23,24 +23,24 @@ public abstract class InGameHudMixin {
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
     private void uglyscoreboardfix$modifySidebar(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
-        if (Config.getInstance().shouldHide(HideType.SIDEBAR, objective)) {
+        if (Config.getInstance().shouldHide(HidePart.SIDEBAR, objective)) {
             ci.cancel();
         }
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"))
     private String uglyscoreboardfix$modifyScore(String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return Config.getInstance().shouldHide(HideType.SCORES, objective) ? "" : score;
+        return Config.getInstance().shouldHide(HidePart.SCORES, objective) ? "" : score;
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"), ordinal = 2)
     private int uglyscoreboardfix$modifySeperatorWidth(int seperatorWidth, MatrixStack matrices, ScoreboardObjective objective) {
-        return Config.getInstance().shouldHide(HideType.SCORES, objective) ? 0 : seperatorWidth;
+        return Config.getInstance().shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
     }
 
     @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 1))
     private int uglyscoreboardfix$modifyScoreWidth(TextRenderer textRenderer, String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return Config.getInstance().shouldHide(HideType.SCORES, objective) ? 0 : textRenderer.getWidth(score);
+        return Config.getInstance().shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"), ordinal = 5)
