@@ -4,61 +4,76 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.lortseam.completeconfig.api.ConfigCategory;
-import me.lortseam.completeconfig.api.ConfigEntry;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Config implements ConfigCategory {
+public final class Config {
 
-    @Getter
-    private static final Config instance = new Config();
+    public static final Sidebar SIDEBAR = new Sidebar();
 
-    private State state = State.AUTO;
-    @ConfigEntry("hide")
-    private HidePart hidePart = HidePart.SCORES;
-    @Getter
-    private SidebarPosition position = SidebarPosition.RIGHT;
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
+    public static final class Sidebar implements ConfigCategory {
 
-    @Override
-    public boolean isConfigPOJO() {
-        return true;
-    }
+        public final Hiding HIDING = new Hiding();
 
-    public boolean shouldHide(HidePart hidePart, ScoreboardObjective objective) {
-        return hidePart == this.hidePart && state.test(objective);
-    }
+        @Getter
+        private SidebarPosition position = SidebarPosition.RIGHT;
 
-    private enum State {
+        @Override
+        public boolean isConfigPOJO() {
+            return true;
+        }
 
-        ENABLED() {
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static final class Hiding implements ConfigCategory {
+
+            private State state = State.AUTO;
+            private HidePart hidePart = HidePart.SCORES;
+
+            public boolean shouldHide(HidePart hidePart, ScoreboardObjective objective) {
+                return hidePart == this.hidePart && state.test(objective);
+            }
+
             @Override
-            boolean test(ScoreboardObjective objective) {
+            public boolean isConfigPOJO() {
                 return true;
             }
-        },
-        AUTO() {
-            @Override
-            boolean test(ScoreboardObjective objective) {
-                int[] scores = objective.getScoreboard().getAllPlayerScores(objective).stream().mapToInt(ScoreboardPlayerScore::getScore).toArray();
-                if (scores.length >= 2) {
-                    for (int i = 1; i < scores.length; i++) {
-                        if (scores[i - 1] + 1 != scores[i]) {
-                            return false;
-                        }
+
+            private enum State {
+
+                ENABLED() {
+                    @Override
+                    boolean test(ScoreboardObjective objective) {
+                        return true;
                     }
-                }
-                return true;
-            }
-        },
-        DISABLED() {
-            @Override
-            boolean test(ScoreboardObjective objective) {
-                return false;
-            }
-        };
+                },
+                AUTO() {
+                    @Override
+                    boolean test(ScoreboardObjective objective) {
+                        int[] scores = objective.getScoreboard().getAllPlayerScores(objective).stream().mapToInt(ScoreboardPlayerScore::getScore).toArray();
+                        if (scores.length >= 2) {
+                            for (int i = 1; i < scores.length; i++) {
+                                if (scores[i - 1] + 1 != scores[i]) {
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                },
+                DISABLED() {
+                    @Override
+                    boolean test(ScoreboardObjective objective) {
+                        return false;
+                    }
+                };
 
-        abstract boolean test(ScoreboardObjective objective);
+                abstract boolean test(ScoreboardObjective objective);
+
+            }
+
+        }
 
     }
 

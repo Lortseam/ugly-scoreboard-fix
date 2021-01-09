@@ -15,7 +15,7 @@ public class UglyScoreboardFix implements ConfigOwner, ModMenuApi {
 
     @Override
     public void onInitializeClientConfig(ConfigBuilder builder) {
-        configHandler = builder.add(Config.getInstance()).finish();
+        configHandler = builder.add(Config.SIDEBAR).finish();
     }
 
     @Override
