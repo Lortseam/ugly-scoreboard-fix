@@ -9,10 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class)
@@ -38,12 +35,12 @@ public abstract class InGameHudMixin {
         return Config.SIDEBAR.HIDING.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
     }
 
-    @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 1))
+    @Redirect(method = "renderScoreboardSidebar", slice = @Slice(from = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z")), at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 0))
     private int uglyscoreboardfix$modifyScoreWidth(TextRenderer textRenderer, String score, MatrixStack matrices, ScoreboardObjective objective) {
         return Config.SIDEBAR.HIDING.shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
     }
 
-    @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"), ordinal = 5)
+    @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 5)
     private int uglyscoreboardfix$modifyX1(int x1) {
         if (Config.SIDEBAR.getPosition() == SidebarPosition.LEFT) {
             xShift = x1;
@@ -52,7 +49,7 @@ public abstract class InGameHudMixin {
         return x1;
     }
 
-    @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"), ordinal = 11)
+    @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 11)
     private int uglyscoreboardfix$modifyX2(int x2) {
         if (Config.SIDEBAR.getPosition() == SidebarPosition.LEFT) {
             return x2 - xShift;
