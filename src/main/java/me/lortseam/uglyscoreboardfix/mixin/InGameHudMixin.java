@@ -1,6 +1,6 @@
 package me.lortseam.uglyscoreboardfix.mixin;
 
-import me.lortseam.uglyscoreboardfix.Config;
+import me.lortseam.uglyscoreboardfix.config.Config;
 import me.lortseam.uglyscoreboardfix.HidePart;
 import me.lortseam.uglyscoreboardfix.SidebarPosition;
 import net.minecraft.client.font.TextRenderer;

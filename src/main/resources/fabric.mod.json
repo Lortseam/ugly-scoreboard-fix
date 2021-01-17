@@ -15,11 +15,11 @@
   "license": "Apache-2.0",
   "environment": "client",
   "entrypoints": {
-    "completeconfig": [
+    "client": [
       "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
     ],
     "modmenu": [
-      "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
+      "me.lortseam.uglyscoreboardfix.config.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -29,7 +29,9 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
+    "fabricloader": ">=0.7.4"
+  },
+  "suggests": {
     "modmenu": "*"
   }
 }
