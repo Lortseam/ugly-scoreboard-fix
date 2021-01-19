@@ -20,7 +20,7 @@ public abstract class InGameHudMixin {
     private int xShift;
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
-    private void uglyscoreboardfix$modifySidebar(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
+    private void uglyscoreboardfix$hide(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
         if (Config.sidebar.hiding.shouldHide(HidePart.SIDEBAR, objective)) {
             ci.cancel();
         }
