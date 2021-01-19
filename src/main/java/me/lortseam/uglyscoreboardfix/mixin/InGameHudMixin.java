@@ -57,4 +57,14 @@ public abstract class InGameHudMixin {
         return x2;
     }
 
+    @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 8)
+    private int uglyscoreboardfix$modifyHeadingColor(int color) {
+        return Config.SIDEBAR.getHeadingColor();
+    }
+
+    @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 7)
+    private int uglyscoreboardfix$modifyColor(int color) {
+        return Config.SIDEBAR.getColor();
+    }
+
 }

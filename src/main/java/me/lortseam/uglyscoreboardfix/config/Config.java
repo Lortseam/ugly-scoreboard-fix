@@ -33,6 +33,12 @@ public final class Config {
         @Getter
         @ConfigEntry(comment = "RIGHT (default) or LEFT")
         private SidebarPosition position = SidebarPosition.RIGHT;
+        @Getter
+        @ConfigEntry.Color(alphaMode = true)
+        private int headingColor = 1711276032;
+        @Getter
+        @ConfigEntry.Color(alphaMode = true)
+        private int color = 1275068416;
 
         @Override
         public boolean isConfigPOJO() {

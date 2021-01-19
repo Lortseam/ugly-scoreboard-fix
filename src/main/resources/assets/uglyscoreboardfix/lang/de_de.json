@@ -15,5 +15,7 @@
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.3": "Deaktiviert - Ausgeschaltet.",
   "config.uglyscoreboardfix.sidebar.position": "Position der Sidebar",
   "config.uglyscoreboardfix.sidebar.position.right": "Rechts",
-  "config.uglyscoreboardfix.sidebar.position.left": "Links"
+  "config.uglyscoreboardfix.sidebar.position.left": "Links",
+  "config.uglyscoreboardfix.sidebar.headingColor": "Farbe der Überschrift",
+  "config.uglyscoreboardfix.sidebar.color": "Farbe"
 }
