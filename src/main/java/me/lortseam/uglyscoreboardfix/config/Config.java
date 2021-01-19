@@ -17,32 +17,44 @@ public final class Config {
 
     @Getter(AccessLevel.PACKAGE)
     private static ConfigHandler handler;
-    public static final Sidebar SIDEBAR = new Sidebar();
+    public static final Sidebar sidebar = new Sidebar();
 
     public static void register() {
         handler = me.lortseam.completeconfig.data.Config.builder(UglyScoreboardFix.MOD_ID)
-                .add(SIDEBAR)
+                .add(sidebar)
                 .build();
     }
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
-        public final Hiding HIDING = new Hiding();
+        public final Background background = new Background();
+        public final Hiding hiding = new Hiding();
 
         @Getter
         @ConfigEntry(comment = "RIGHT (default) or LEFT")
         private SidebarPosition position = SidebarPosition.RIGHT;
-        @Getter
-        @ConfigEntry.Color(alphaMode = true)
-        private int headingColor = 1711276032;
-        @Getter
-        @ConfigEntry.Color(alphaMode = true)
-        private int color = 1275068416;
 
         @Override
         public boolean isConfigPOJO() {
             return true;
+        }
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static final class Background implements ConfigGroup {
+
+            @Getter
+            @ConfigEntry.Color(alphaMode = true)
+            private int headingColor = 1711276032;
+            @Getter
+            @ConfigEntry.Color(alphaMode = true)
+            private int color = 1275068416;
+
+            @Override
+            public boolean isConfigPOJO() {
+                return true;
+            }
+
         }
 
         @NoArgsConstructor(access = AccessLevel.PRIVATE)

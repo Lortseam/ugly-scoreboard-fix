@@ -16,6 +16,7 @@
   "config.uglyscoreboardfix.sidebar.position": "Sidebar position",
   "config.uglyscoreboardfix.sidebar.position.right": "Right",
   "config.uglyscoreboardfix.sidebar.position.left": "Left",
-  "config.uglyscoreboardfix.sidebar.headingColor": "Heading color",
-  "config.uglyscoreboardfix.sidebar.color": "Color"
+  "config.uglyscoreboardfix.sidebar.background": "Background",
+  "config.uglyscoreboardfix.sidebar.background.headingColor": "Heading color",
+  "config.uglyscoreboardfix.sidebar.background.color": "Color"
 }

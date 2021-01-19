@@ -16,6 +16,7 @@
   "config.uglyscoreboardfix.sidebar.position": "Position der Sidebar",
   "config.uglyscoreboardfix.sidebar.position.right": "Rechts",
   "config.uglyscoreboardfix.sidebar.position.left": "Links",
-  "config.uglyscoreboardfix.sidebar.headingColor": "Farbe der Überschrift",
-  "config.uglyscoreboardfix.sidebar.color": "Farbe"
+  "config.uglyscoreboardfix.sidebar.background": "Hintegrund",
+  "config.uglyscoreboardfix.sidebar.background.headingColor": "Farbe der Überschrift",
+  "config.uglyscoreboardfix.sidebar.background.color": "Farbe"
 }

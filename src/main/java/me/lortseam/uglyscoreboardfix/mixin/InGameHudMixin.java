@@ -20,29 +20,29 @@ public abstract class InGameHudMixin {
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
     private void uglyscoreboardfix$modifySidebar(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
-        if (Config.SIDEBAR.HIDING.shouldHide(HidePart.SIDEBAR, objective)) {
+        if (Config.sidebar.hiding.shouldHide(HidePart.SIDEBAR, objective)) {
             ci.cancel();
         }
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"))
     private String uglyscoreboardfix$modifyScore(String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return Config.SIDEBAR.HIDING.shouldHide(HidePart.SCORES, objective) ? "" : score;
+        return Config.sidebar.hiding.shouldHide(HidePart.SCORES, objective) ? "" : score;
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"), ordinal = 2)
     private int uglyscoreboardfix$modifySeperatorWidth(int seperatorWidth, MatrixStack matrices, ScoreboardObjective objective) {
-        return Config.SIDEBAR.HIDING.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
+        return Config.sidebar.hiding.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
     }
 
     @Redirect(method = "renderScoreboardSidebar", slice = @Slice(from = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z")), at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 0))
     private int uglyscoreboardfix$modifyScoreWidth(TextRenderer textRenderer, String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return Config.SIDEBAR.HIDING.shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
+        return Config.sidebar.hiding.shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 5)
     private int uglyscoreboardfix$modifyX1(int x1) {
-        if (Config.SIDEBAR.getPosition() == SidebarPosition.LEFT) {
+        if (Config.sidebar.getPosition() == SidebarPosition.LEFT) {
             xShift = x1;
             return 2;
         }
@@ -51,20 +51,20 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 11)
     private int uglyscoreboardfix$modifyX2(int x2) {
-        if (Config.SIDEBAR.getPosition() == SidebarPosition.LEFT) {
+        if (Config.sidebar.getPosition() == SidebarPosition.LEFT) {
             return x2 - xShift;
         }
         return x2;
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 8)
-    private int uglyscoreboardfix$modifyHeadingColor(int color) {
-        return Config.SIDEBAR.getHeadingColor();
+    private int uglyscoreboardfix$modifyBackgroundHeadingColor(int color) {
+        return Config.sidebar.background.getHeadingColor();
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 7)
-    private int uglyscoreboardfix$modifyColor(int color) {
-        return Config.SIDEBAR.getColor();
+    private int uglyscoreboardfix$modifyBackgroundColor(int color) {
+        return Config.sidebar.background.getColor();
     }
 
 }
