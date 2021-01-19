@@ -20,7 +20,7 @@
   "config.uglyscoreboardfix.sidebar.text.headingColor": "Farbe der Überschrift",
   "config.uglyscoreboardfix.sidebar.text.color": "Textfarbe",
   "config.uglyscoreboardfix.sidebar.text.scoreColor": "Farbe der Punkte",
-  "config.uglyscoreboardfix.sidebar.background": "Hintegrund",
+  "config.uglyscoreboardfix.sidebar.background": "Hintergrund",
   "config.uglyscoreboardfix.sidebar.background.headingColor": "Hintergrundfarbe der Überschrift",
   "config.uglyscoreboardfix.sidebar.background.color": "Hintergrundfarbe"
 }
