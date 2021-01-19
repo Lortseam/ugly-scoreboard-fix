@@ -3,7 +3,7 @@
   "id": "uglyscoreboardfix",
   "version": "${version}",
   "name": "Ugly Scoreboard Fix",
-  "description": "Scoreboard sidebar modifications including hiding of scores",
+  "description": "Scoreboard sidebar modifications",
   "authors": [
     "Lortseam"
   ],
