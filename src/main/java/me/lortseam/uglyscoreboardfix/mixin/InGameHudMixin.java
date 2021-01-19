@@ -7,6 +7,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.scoreboard.ScoreboardObjective;
+import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
@@ -58,13 +59,28 @@ public abstract class InGameHudMixin {
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 8)
-    private int uglyscoreboardfix$modifyBackgroundHeadingColor(int color) {
+    private int uglyscoreboardfix$modifyHeadingBackgroundColor(int color) {
         return Config.sidebar.background.getHeadingColor();
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 7)
     private int uglyscoreboardfix$modifyBackgroundColor(int color) {
         return Config.sidebar.background.getColor();
+    }
+
+    @ModifyArg(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 1), index = 4)
+    private int uglyscoreboardfix$modifyHeadingColor(int color) {
+        return Config.sidebar.text.getHeadingColor().getRgb();
+    }
+
+    @ModifyArg(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 0), index = 4)
+    private int uglyscoreboardfix$modifyTextColor(int color) {
+        return Config.sidebar.text.getColor().getRgb();
+    }
+
+    @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Ljava/lang/String;FFI)I", ordinal = 0))
+    private int uglyscoreboardfix$modifyScoreColor(TextRenderer textRenderer, MatrixStack matrices, String text, float x, float y, int color) {
+        return textRenderer.draw(matrices, Formatting.strip(text), x, y, Config.sidebar.text.getScoreColor().getRgb());
     }
 
 }

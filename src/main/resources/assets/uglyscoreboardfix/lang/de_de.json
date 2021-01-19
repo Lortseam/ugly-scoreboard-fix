@@ -16,7 +16,11 @@
   "config.uglyscoreboardfix.sidebar.position": "Position der Sidebar",
   "config.uglyscoreboardfix.sidebar.position.right": "Rechts",
   "config.uglyscoreboardfix.sidebar.position.left": "Links",
+  "config.uglyscoreboardfix.sidebar.text": "Text",
+  "config.uglyscoreboardfix.sidebar.text.headingColor": "Farbe der Überschrift",
+  "config.uglyscoreboardfix.sidebar.text.color": "Textfarbe",
+  "config.uglyscoreboardfix.sidebar.text.scoreColor": "Farbe der Punkte",
   "config.uglyscoreboardfix.sidebar.background": "Hintegrund",
-  "config.uglyscoreboardfix.sidebar.background.headingColor": "Farbe der Überschrift",
-  "config.uglyscoreboardfix.sidebar.background.color": "Farbe"
+  "config.uglyscoreboardfix.sidebar.background.headingColor": "Hintergrundfarbe der Überschrift",
+  "config.uglyscoreboardfix.sidebar.background.color": "Hintergrundfarbe"
 }

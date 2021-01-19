@@ -11,6 +11,8 @@ import me.lortseam.uglyscoreboardfix.SidebarPosition;
 import me.lortseam.uglyscoreboardfix.UglyScoreboardFix;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
+import net.minecraft.text.TextColor;
+import net.minecraft.util.Formatting;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Config {
@@ -28,6 +30,7 @@ public final class Config {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
+        public final Text text = new Text();
         public final Background background = new Background();
         public final Hiding hiding = new Hiding();
 
@@ -38,6 +41,23 @@ public final class Config {
         @Override
         public boolean isConfigPOJO() {
             return true;
+        }
+
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static final class Text implements ConfigGroup {
+
+            @Getter
+            private TextColor headingColor = TextColor.fromFormatting(Formatting.WHITE);
+            @Getter
+            private TextColor color = TextColor.fromFormatting(Formatting.WHITE);
+            @Getter
+            private TextColor scoreColor = TextColor.fromFormatting(Formatting.RED);
+
+            @Override
+            public boolean isConfigPOJO() {
+                return true;
+            }
+
         }
 
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
