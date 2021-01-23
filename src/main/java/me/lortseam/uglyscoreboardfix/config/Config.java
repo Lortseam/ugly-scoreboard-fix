@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.lortseam.completeconfig.ConfigHandler;
 import me.lortseam.completeconfig.api.ConfigEntry;
+import me.lortseam.completeconfig.api.ConfigEntryContainer;
 import me.lortseam.completeconfig.api.ConfigGroup;
 import me.lortseam.uglyscoreboardfix.HidePart;
 import me.lortseam.uglyscoreboardfix.SidebarPosition;
@@ -15,28 +16,29 @@ import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Config {
+public final class Config implements ConfigEntryContainer {
 
     @Getter(AccessLevel.PACKAGE)
+    @ConfigEntry.Ignore
     private static ConfigHandler handler;
-    public static final Sidebar sidebar = new Sidebar();
 
     public static void register() {
         handler = me.lortseam.completeconfig.data.Config.builder(UglyScoreboardFix.MOD_ID)
-                .add(sidebar)
+                .add(new Config())
                 .build();
+    }
+
+    @Override
+    public boolean isConfigPOJO() {
+        return true;
     }
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
-        public final Text text = new Text();
-        public final Background background = new Background();
-        public final Hiding hiding = new Hiding();
-
         @Getter
         @ConfigEntry(comment = "RIGHT (default) or LEFT")
-        private SidebarPosition position = SidebarPosition.RIGHT;
+        private static SidebarPosition position = SidebarPosition.RIGHT;
 
         @Override
         public boolean isConfigPOJO() {
@@ -47,11 +49,11 @@ public final class Config {
         public static final class Text implements ConfigGroup {
 
             @Getter
-            private TextColor headingColor = TextColor.fromFormatting(Formatting.WHITE);
+            private static TextColor headingColor = TextColor.fromFormatting(Formatting.WHITE);
             @Getter
-            private TextColor color = TextColor.fromFormatting(Formatting.WHITE);
+            private static TextColor color = TextColor.fromFormatting(Formatting.WHITE);
             @Getter
-            private TextColor scoreColor = TextColor.fromFormatting(Formatting.RED);
+            private static TextColor scoreColor = TextColor.fromFormatting(Formatting.RED);
 
             @Override
             public boolean isConfigPOJO() {
@@ -65,10 +67,10 @@ public final class Config {
 
             @Getter
             @ConfigEntry.Color(alphaMode = true)
-            private int headingColor = 1711276032;
+            private static int headingColor = 1711276032;
             @Getter
             @ConfigEntry.Color(alphaMode = true)
-            private int color = 1275068416;
+            private static int color = 1275068416;
 
             @Override
             public boolean isConfigPOJO() {
@@ -81,12 +83,12 @@ public final class Config {
         public static final class Hiding implements ConfigGroup {
 
             @ConfigEntry(comment = "ENABLED or DISABLED or AUTO (only enabled when scores are in consecutive order)")
-            private State state = State.AUTO;
+            private static State state = State.AUTO;
             @ConfigEntry(comment = "SCORES or SIDEBAR")
-            private HidePart hidePart = HidePart.SCORES;
+            private static HidePart hidePart = HidePart.SCORES;
 
-            public boolean shouldHide(HidePart hidePart, ScoreboardObjective objective) {
-                return hidePart == this.hidePart && state.test(objective);
+            public static boolean shouldHide(HidePart part, ScoreboardObjective objective) {
+                return part == hidePart && state.test(objective);
             }
 
             @Override
