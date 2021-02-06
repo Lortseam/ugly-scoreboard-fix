@@ -26,12 +26,12 @@ public abstract class InGameHudMixin {
         }
     }
 
-    @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"))
+    @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
     private String uglyscoreboardfix$modifyScore(String score, MatrixStack matrices, ScoreboardObjective objective) {
         return Settings.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? "" : score;
     }
 
-    @ModifyVariable(method = "renderScoreboardSidebar", at = @At("STORE"), ordinal = 2)
+    @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 2)
     private int uglyscoreboardfix$modifySeperatorWidth(int seperatorWidth, MatrixStack matrices, ScoreboardObjective objective) {
         return Settings.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
     }
