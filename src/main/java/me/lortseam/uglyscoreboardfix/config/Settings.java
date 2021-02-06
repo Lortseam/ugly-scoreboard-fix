@@ -3,30 +3,17 @@ package me.lortseam.uglyscoreboardfix.config;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import me.lortseam.completeconfig.ConfigHandler;
+import me.lortseam.completeconfig.api.ConfigContainer;
 import me.lortseam.completeconfig.api.ConfigEntry;
-import me.lortseam.completeconfig.api.ConfigEntryContainer;
 import me.lortseam.completeconfig.api.ConfigGroup;
 import me.lortseam.uglyscoreboardfix.HidePart;
 import me.lortseam.uglyscoreboardfix.SidebarPosition;
-import me.lortseam.uglyscoreboardfix.UglyScoreboardFix;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class Config implements ConfigEntryContainer {
-
-    @Getter(AccessLevel.PACKAGE)
-    @ConfigEntry.Ignore
-    private static ConfigHandler handler;
-
-    public static void register() {
-        handler = me.lortseam.completeconfig.data.Config.builder(UglyScoreboardFix.MOD_ID)
-                .add(new Config())
-                .build();
-    }
+public final class Settings implements ConfigContainer {
 
     @Override
     public boolean isConfigPOJO() {
