@@ -9,6 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.util.Formatting;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -16,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
 
+    @Shadow private int scaledWidth;
     @Unique
     private int xShift;
 
@@ -44,8 +46,8 @@ public abstract class InGameHudMixin {
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 5)
     private int uglyscoreboardfix$modifyX1(int x1) {
         if (Settings.Sidebar.getPosition() == SidebarPosition.LEFT) {
-            xShift = x1;
-            return 2;
+            xShift = x1 - 1;
+            return 1;
         }
         return x1;
     }
