@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.lortseam.completeconfig.api.ConfigContainer;
+import me.lortseam.completeconfig.api.ConfigEntries;
 import me.lortseam.completeconfig.api.ConfigEntry;
 import me.lortseam.completeconfig.api.ConfigGroup;
 import me.lortseam.uglyscoreboardfix.HidePart;
@@ -15,11 +16,8 @@ import net.minecraft.util.Formatting;
 
 public final class Settings implements ConfigContainer {
 
-    @Override
-    public boolean isConfigPOJO() {
-        return true;
-    }
-
+    @Transitive
+    @ConfigEntries
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
@@ -27,11 +25,8 @@ public final class Settings implements ConfigContainer {
         @ConfigEntry(comment = "RIGHT (default) or LEFT")
         private static SidebarPosition position = SidebarPosition.RIGHT;
 
-        @Override
-        public boolean isConfigPOJO() {
-            return true;
-        }
-
+        @Transitive
+        @ConfigEntries
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Text implements ConfigGroup {
 
@@ -42,13 +37,10 @@ public final class Settings implements ConfigContainer {
             @Getter
             private static TextColor scoreColor = TextColor.fromFormatting(Formatting.RED);
 
-            @Override
-            public boolean isConfigPOJO() {
-                return true;
-            }
-
         }
 
+        @Transitive
+        @ConfigEntries
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Background implements ConfigGroup {
 
@@ -59,13 +51,10 @@ public final class Settings implements ConfigContainer {
             @ConfigEntry.Color(alphaMode = true)
             private static int color = 1275068416;
 
-            @Override
-            public boolean isConfigPOJO() {
-                return true;
-            }
-
         }
 
+        @Transitive
+        @ConfigEntries
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Hiding implements ConfigGroup {
 
@@ -76,11 +65,6 @@ public final class Settings implements ConfigContainer {
 
             public static boolean shouldHide(HidePart part, ScoreboardObjective objective) {
                 return part == hidePart && state.test(objective);
-            }
-
-            @Override
-            public boolean isConfigPOJO() {
-                return true;
             }
 
             private enum State {
