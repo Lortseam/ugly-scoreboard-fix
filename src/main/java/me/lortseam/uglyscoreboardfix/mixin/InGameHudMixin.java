@@ -101,6 +101,9 @@ public abstract class InGameHudMixin {
     @Inject(method = "renderScoreboardSidebar", at = @At("TAIL"))
     private void uglyscoreboardfix$pop(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
         matrices.pop();
+        float scale = Settings.Sidebar.getScale();
+        scaledWidth *= scale;
+        scaledHeight *= scale;
     }
 
 }
