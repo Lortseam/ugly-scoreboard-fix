@@ -21,6 +21,6 @@
   "config.uglyscoreboardfix.sidebar.text.color": "Text color",
   "config.uglyscoreboardfix.sidebar.text.scoreColor": "Score color",
   "config.uglyscoreboardfix.sidebar.background": "Background",
-  "config.uglyscoreboardfix.sidebar.background.headingColor": "Heading background color",
-  "config.uglyscoreboardfix.sidebar.background.color": "Background color"
+  "config.uglyscoreboardfix.sidebar.background.headingColor": "Heading color",
+  "config.uglyscoreboardfix.sidebar.background.color": "Color"
 }
