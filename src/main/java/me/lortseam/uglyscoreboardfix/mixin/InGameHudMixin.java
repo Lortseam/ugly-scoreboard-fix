@@ -1,8 +1,8 @@
 package me.lortseam.uglyscoreboardfix.mixin;
 
-import me.lortseam.uglyscoreboardfix.config.Settings;
 import me.lortseam.uglyscoreboardfix.config.HidePart;
 import me.lortseam.uglyscoreboardfix.config.HorizontalPosition;
+import me.lortseam.uglyscoreboardfix.config.Settings;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -18,15 +18,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
 
+    @Shadow private int scaledWidth;
     @Shadow private int scaledHeight;
     @Unique
     private int xShift;
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
-    private void uglyscoreboardfix$hide(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
+    private void uglyscoreboardfix$hideOrScale(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
         if (Settings.Sidebar.Hiding.shouldHide(HidePart.SIDEBAR, objective)) {
             ci.cancel();
+            return;
         }
+        matrices.push();
+        float scale = Settings.Sidebar.getScale();
+        matrices.scale(scale, scale, scale);
+        scaledWidth *= 1 / scale;
+        scaledHeight *= 1 / scale;
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
@@ -89,6 +96,11 @@ public abstract class InGameHudMixin {
     @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Ljava/lang/String;FFI)I", ordinal = 0))
     private int uglyscoreboardfix$modifyScoreColor(TextRenderer textRenderer, MatrixStack matrices, String text, float x, float y, int color) {
         return textRenderer.draw(matrices, Formatting.strip(text), x, y, Settings.Sidebar.Text.getScoreColor().getRgb());
+    }
+
+    @Inject(method = "renderScoreboardSidebar", at = @At("TAIL"))
+    private void uglyscoreboardfix$pop(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
+        matrices.pop();
     }
 
 }

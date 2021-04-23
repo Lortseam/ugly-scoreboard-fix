@@ -17,6 +17,7 @@
   "config.uglyscoreboardfix.sidebar.position.x.right": "Rechts",
   "config.uglyscoreboardfix.sidebar.position.x.left": "Links",
   "config.uglyscoreboardfix.sidebar.position.yOffset": "Vertikale Verschiebung",
+  "config.uglyscoreboardfix.sidebar.scale": "Größe",
   "config.uglyscoreboardfix.sidebar.text": "Text",
   "config.uglyscoreboardfix.sidebar.text.headingColor": "Farbe der Überschrift",
   "config.uglyscoreboardfix.sidebar.text.color": "Textfarbe",

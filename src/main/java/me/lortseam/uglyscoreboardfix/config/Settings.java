@@ -19,6 +19,10 @@ public final class Settings implements ConfigContainer {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
+        @Getter
+        @ConfigEntry.BoundedFloat(min = 0.1f, max = 10)
+        private static float scale = 1;
+
         @Transitive
         @ConfigEntries
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -28,7 +32,6 @@ public final class Settings implements ConfigContainer {
             @ConfigEntry(comment = "RIGHT (default) or LEFT")
             private static HorizontalPosition x = HorizontalPosition.RIGHT;
             @Getter
-            @ConfigEntry
             private static int yOffset = 0;
 
         }
