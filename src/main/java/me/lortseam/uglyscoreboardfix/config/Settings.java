@@ -27,6 +27,9 @@ public final class Settings implements ConfigContainer {
             @Getter
             @ConfigEntry(comment = "RIGHT (default) or LEFT")
             private static HorizontalPosition x = HorizontalPosition.RIGHT;
+            @Getter
+            @ConfigEntry
+            private static int yOffset = 0;
 
         }
 

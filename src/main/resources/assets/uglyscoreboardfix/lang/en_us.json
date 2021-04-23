@@ -16,6 +16,7 @@
   "config.uglyscoreboardfix.sidebar.position.x": "Horizontal",
   "config.uglyscoreboardfix.sidebar.position.x.right": "Right",
   "config.uglyscoreboardfix.sidebar.position.x.left": "Left",
+  "config.uglyscoreboardfix.sidebar.position.yOffset": "Vertical offset",
   "config.uglyscoreboardfix.sidebar.text": "Text",
   "config.uglyscoreboardfix.sidebar.text.headingColor": "Heading color",
   "config.uglyscoreboardfix.sidebar.text.color": "Text color",
