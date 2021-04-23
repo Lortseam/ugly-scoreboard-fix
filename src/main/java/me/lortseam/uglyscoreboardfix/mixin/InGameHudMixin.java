@@ -1,8 +1,8 @@
 package me.lortseam.uglyscoreboardfix.mixin;
 
 import me.lortseam.uglyscoreboardfix.config.Settings;
-import me.lortseam.uglyscoreboardfix.HidePart;
-import me.lortseam.uglyscoreboardfix.SidebarPosition;
+import me.lortseam.uglyscoreboardfix.config.HidePart;
+import me.lortseam.uglyscoreboardfix.config.HorizontalPosition;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -45,7 +45,7 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 5)
     private int uglyscoreboardfix$modifyX1(int x1) {
-        if (Settings.Sidebar.getPosition() == SidebarPosition.LEFT) {
+        if (Settings.Sidebar.Position.getX() == HorizontalPosition.LEFT) {
             xShift = x1 - 1;
             return 1;
         }
@@ -54,7 +54,7 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 11)
     private int uglyscoreboardfix$modifyX2(int x2) {
-        if (Settings.Sidebar.getPosition() == SidebarPosition.LEFT) {
+        if (Settings.Sidebar.Position.getX() == HorizontalPosition.LEFT) {
             return x2 - xShift;
         }
         return x2;

@@ -7,8 +7,6 @@ import me.lortseam.completeconfig.api.ConfigContainer;
 import me.lortseam.completeconfig.api.ConfigEntries;
 import me.lortseam.completeconfig.api.ConfigEntry;
 import me.lortseam.completeconfig.api.ConfigGroup;
-import me.lortseam.uglyscoreboardfix.HidePart;
-import me.lortseam.uglyscoreboardfix.SidebarPosition;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.text.TextColor;
@@ -21,9 +19,16 @@ public final class Settings implements ConfigContainer {
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
-        @Getter
-        @ConfigEntry(comment = "RIGHT (default) or LEFT")
-        private static SidebarPosition position = SidebarPosition.RIGHT;
+        @Transitive
+        @ConfigEntries
+        @NoArgsConstructor(access = AccessLevel.PRIVATE)
+        public static final class Position implements ConfigGroup {
+
+            @Getter
+            @ConfigEntry(comment = "RIGHT (default) or LEFT")
+            private static HorizontalPosition x = HorizontalPosition.RIGHT;
+
+        }
 
         @Transitive
         @ConfigEntries

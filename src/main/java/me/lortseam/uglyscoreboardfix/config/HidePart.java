@@ -1,4 +1,4 @@
-package me.lortseam.uglyscoreboardfix;
+package me.lortseam.uglyscoreboardfix.config;
 
 public enum HidePart {
 
