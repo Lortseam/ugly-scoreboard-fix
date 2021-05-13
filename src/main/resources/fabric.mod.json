@@ -31,5 +31,8 @@
   "suggests": {
     "modmenu": "*",
     "cloth-config2": "*"
+  },
+  "conflicts": {
+    "optifabric": "*"
   }
 }
