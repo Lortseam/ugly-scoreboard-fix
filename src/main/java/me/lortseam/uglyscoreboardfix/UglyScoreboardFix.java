@@ -6,6 +6,7 @@ import me.lortseam.uglyscoreboardfix.config.Settings;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.loader.api.FabricLoader;
 
 @Environment(EnvType.CLIENT)
 public class UglyScoreboardFix implements ClientModInitializer {
@@ -15,7 +16,9 @@ public class UglyScoreboardFix implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         new Settings().load();
-        ConfigScreenBuilder.setMain(MOD_ID, new ClothConfigScreenBuilder());
+        if (FabricLoader.getInstance().isModLoaded("cloth-config2")) {
+            ConfigScreenBuilder.setMain(MOD_ID, new ClothConfigScreenBuilder());
+        }
     }
 
 }
