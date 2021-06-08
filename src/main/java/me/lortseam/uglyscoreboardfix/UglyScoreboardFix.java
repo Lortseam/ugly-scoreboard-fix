@@ -1,6 +1,7 @@
 package me.lortseam.uglyscoreboardfix;
 
-import me.lortseam.completeconfig.data.Config;
+import me.lortseam.completeconfig.gui.ConfigScreenBuilder;
+import me.lortseam.completeconfig.gui.cloth.ClothConfigScreenBuilder;
 import me.lortseam.uglyscoreboardfix.config.Settings;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -13,9 +14,8 @@ public class UglyScoreboardFix implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        Config.builder(UglyScoreboardFix.MOD_ID)
-                .add(new Settings())
-                .build();
+        new Settings().load();
+        ConfigScreenBuilder.setMain(MOD_ID, new ClothConfigScreenBuilder());
     }
 
 }

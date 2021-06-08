@@ -26,8 +26,8 @@
     }
   ],
   "depends": {
-    "fabricloader": ">=0.7.4",
-    "completeconfig": ">=0.16.0"
+    "java": ">=16",
+    "fabricloader": ">=0.11.3"
   },
   "conflicts": {
     "optifabric": "*"

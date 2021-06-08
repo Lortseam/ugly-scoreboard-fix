@@ -7,12 +7,18 @@ import me.lortseam.completeconfig.api.ConfigContainer;
 import me.lortseam.completeconfig.api.ConfigEntries;
 import me.lortseam.completeconfig.api.ConfigEntry;
 import me.lortseam.completeconfig.api.ConfigGroup;
+import me.lortseam.completeconfig.data.Config;
+import me.lortseam.uglyscoreboardfix.UglyScoreboardFix;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 
-public final class Settings implements ConfigContainer {
+public final class Settings extends Config implements ConfigContainer {
+
+    public Settings() {
+        super(UglyScoreboardFix.MOD_ID);
+    }
 
     @Transitive
     @ConfigEntries
