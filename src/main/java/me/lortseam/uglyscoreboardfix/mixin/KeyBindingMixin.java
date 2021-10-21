@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(KeyBinding.class)
-public final class KeyBindingMixin {
+public abstract class KeyBindingMixin {
 
     @Inject(method = "onKeyPressed", at = @At("RETURN"))
     private static void uglyscoreboardfix$onKey(InputUtil.Key key, CallbackInfo ci) {
