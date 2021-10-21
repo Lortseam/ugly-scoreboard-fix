@@ -12,7 +12,7 @@
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.1": "Enabled - Always enabled.",
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.2": "Auto - Enabled only when scores are in consecutive order.",
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.3": "Disabled - Disabled.",
-  "config.uglyscoreboardfix.sidebar.hiding.toggleKeyBind": "Key-bind to manually hide/show sidebar",
+  "config.uglyscoreboardfix.sidebar.hiding.toggleKeyBind": "Key-binding to manually toggle sidebar visibility",
   "config.uglyscoreboardfix.sidebar.position": "Position",
   "config.uglyscoreboardfix.sidebar.position.x": "Horizontal",
   "config.uglyscoreboardfix.sidebar.position.x.right": "Right",
