@@ -9,6 +9,7 @@ import me.lortseam.completeconfig.api.ConfigEntry;
 import me.lortseam.completeconfig.api.ConfigGroup;
 import me.lortseam.completeconfig.data.Config;
 import me.lortseam.uglyscoreboardfix.UglyScoreboardFix;
+import net.minecraft.client.util.InputUtil;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.text.TextColor;
@@ -79,9 +80,17 @@ public final class Settings extends Config implements ConfigContainer {
             private static State state = State.AUTO;
             @ConfigEntry(comment = "SCORES or SIDEBAR")
             private static HidePart hidePart = HidePart.SCORES;
+            @Getter
+            private static InputUtil.Key toggleKeyBind = InputUtil.UNKNOWN_KEY;
+            @ConfigEntries.Exclude
+            private static boolean overrideHide = false;
 
             public static boolean shouldHide(HidePart part, ScoreboardObjective objective) {
-                return part == hidePart && state.test(objective);
+                return part == hidePart && state.test(objective) || overrideHide;
+            }
+
+            public static void toggle() {
+                overrideHide = !overrideHide;
             }
 
             private enum State {

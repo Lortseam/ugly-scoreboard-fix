@@ -12,6 +12,7 @@
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.1": "Aktiviert - Immer eingeschaltet.",
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.2": "Automatisch - Nur bei einer aufeinanderfolgenden Reihenfolge der Punkte aktiviert.",
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip.3": "Deaktiviert - Ausgeschaltet.",
+  "config.uglyscoreboardfix.sidebar.hiding.toggleKeyBind": "Keybind zum manuellen Ausblenden/Einblenden",
   "config.uglyscoreboardfix.sidebar.position": "Position",
   "config.uglyscoreboardfix.sidebar.position.x": "Horizontal",
   "config.uglyscoreboardfix.sidebar.position.x.right": "Rechts",
