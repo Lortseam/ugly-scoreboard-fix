@@ -7,6 +7,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.scoreboard.ScoreboardObjective;
+import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -83,19 +84,32 @@ public abstract class InGameHudMixin {
         return Settings.Sidebar.Background.getColor();
     }
 
-    @ModifyArg(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 1), index = 4)
-    private int uglyscoreboardfix$modifyHeadingColor(int color) {
-        return Settings.Sidebar.Text.getHeadingColor().getRgb();
+    @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 1))
+    private int uglyscoreboardfix$drawHeadingText(TextRenderer textRenderer, MatrixStack matrices, Text text, float x, float y, int color) {
+        color = Settings.Sidebar.Text.getHeadingColor().getRgb();
+        if (Settings.Sidebar.Text.isHeadingShadow()) {
+            return textRenderer.drawWithShadow(matrices, text, x, y, color);
+        }
+        return textRenderer.draw(matrices, text, x, y, color);
     }
 
-    @ModifyArg(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 0), index = 4)
-    private int uglyscoreboardfix$modifyTextColor(int color) {
-        return Settings.Sidebar.Text.getColor().getRgb();
+    @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 0))
+    private int uglyscoreboardfix$drawText(TextRenderer textRenderer, MatrixStack matrices, Text text, float x, float y, int color) {
+        color = Settings.Sidebar.Text.getColor().getRgb();
+        if (Settings.Sidebar.Text.isShadow()) {
+            return textRenderer.drawWithShadow(matrices, text, x, y, color);
+        }
+        return textRenderer.draw(matrices, text, x, y, color);
     }
 
     @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Ljava/lang/String;FFI)I", ordinal = 0))
-    private int uglyscoreboardfix$modifyScoreColor(TextRenderer textRenderer, MatrixStack matrices, String text, float x, float y, int color) {
-        return textRenderer.draw(matrices, Formatting.strip(text), x, y, Settings.Sidebar.Text.getScoreColor().getRgb());
+    private int uglyscoreboardfix$drawScoreText(TextRenderer textRenderer, MatrixStack matrices, String text, float x, float y, int color) {
+        text = Formatting.strip(text);
+        color = Settings.Sidebar.Text.getScoreColor().getRgb();
+        if (Settings.Sidebar.Text.isScoreShadow()) {
+            return textRenderer.drawWithShadow(matrices, text, x, y, color);
+        }
+        return textRenderer.draw(matrices, text, x, y, color);
     }
 
     @Inject(method = "renderScoreboardSidebar", at = @At("TAIL"))

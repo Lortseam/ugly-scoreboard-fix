@@ -25,5 +25,8 @@
   "config.uglyscoreboardfix.sidebar.text.scoreColor": "Farbe der Punkte",
   "config.uglyscoreboardfix.sidebar.background": "Hintergrund",
   "config.uglyscoreboardfix.sidebar.background.headingColor": "Farbe der Überschrift",
-  "config.uglyscoreboardfix.sidebar.background.color": "Farbe"
+  "config.uglyscoreboardfix.sidebar.background.color": "Farbe",
+  "config.uglyscoreboardfix.sidebar.text.headingShadow": "Überschrift-Schatten",
+  "config.uglyscoreboardfix.sidebar.text.shadow": "Text-Schatten",
+  "config.uglyscoreboardfix.sidebar.text.scoreShadow": "Punkte-Schatten"
 }

@@ -21,8 +21,11 @@
   "config.uglyscoreboardfix.sidebar.scale": "Scale",
   "config.uglyscoreboardfix.sidebar.text": "Text",
   "config.uglyscoreboardfix.sidebar.text.headingColor": "Heading color",
+  "config.uglyscoreboardfix.sidebar.text.headingShadow": "Heading shadow",
   "config.uglyscoreboardfix.sidebar.text.color": "Text color",
+  "config.uglyscoreboardfix.sidebar.text.shadow": "Text shadow",
   "config.uglyscoreboardfix.sidebar.text.scoreColor": "Score color",
+  "config.uglyscoreboardfix.sidebar.text.scoreShadow": "Score shadow",
   "config.uglyscoreboardfix.sidebar.background": "Background",
   "config.uglyscoreboardfix.sidebar.background.headingColor": "Heading color",
   "config.uglyscoreboardfix.sidebar.background.color": "Color"

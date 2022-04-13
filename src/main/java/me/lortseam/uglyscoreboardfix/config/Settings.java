@@ -51,9 +51,15 @@ public final class Settings extends Config implements ConfigContainer {
             @Getter
             private static TextColor headingColor = TextColor.fromFormatting(Formatting.WHITE);
             @Getter
+            private static boolean headingShadow = false;
+            @Getter
             private static TextColor color = TextColor.fromFormatting(Formatting.WHITE);
             @Getter
+            private static boolean shadow = false;
+            @Getter
             private static TextColor scoreColor = TextColor.fromFormatting(Formatting.RED);
+            @Getter
+            private static boolean scoreShadow = false;
 
         }
 
