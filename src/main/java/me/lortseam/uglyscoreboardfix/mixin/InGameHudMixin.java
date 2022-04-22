@@ -2,7 +2,7 @@ package me.lortseam.uglyscoreboardfix.mixin;
 
 import me.lortseam.uglyscoreboardfix.config.HidePart;
 import me.lortseam.uglyscoreboardfix.config.HorizontalPosition;
-import me.lortseam.uglyscoreboardfix.config.Settings;
+import me.lortseam.uglyscoreboardfix.config.ModConfig;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
@@ -26,12 +26,12 @@ public abstract class InGameHudMixin {
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
     private void uglyscoreboardfix$hideOrScale(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
-        if (Settings.Sidebar.Hiding.shouldHide(HidePart.SIDEBAR, objective)) {
+        if (ModConfig.Sidebar.Hiding.shouldHide(HidePart.SIDEBAR, objective)) {
             ci.cancel();
             return;
         }
         matrices.push();
-        float scale = Settings.Sidebar.getScale();
+        float scale = ModConfig.Sidebar.getScale();
         matrices.scale(scale, scale, scale);
         scaledWidth *= 1 / scale;
         scaledHeight *= 1 / scale;
@@ -39,22 +39,22 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
     private String uglyscoreboardfix$modifyScore(String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return Settings.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? "" : score;
+        return ModConfig.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? "" : score;
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 2)
     private int uglyscoreboardfix$modifySeperatorWidth(int seperatorWidth, MatrixStack matrices, ScoreboardObjective objective) {
-        return Settings.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
+        return ModConfig.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
     }
 
     @Redirect(method = "renderScoreboardSidebar", slice = @Slice(from = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z")), at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 0))
     private int uglyscoreboardfix$modifyScoreWidth(TextRenderer textRenderer, String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return Settings.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
+        return ModConfig.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 5)
     private int uglyscoreboardfix$modifyX1(int x1) {
-        if (Settings.Sidebar.Position.getX() == HorizontalPosition.LEFT) {
+        if (ModConfig.Sidebar.Position.getX() == HorizontalPosition.LEFT) {
             xShift = x1 - 1;
             return 1;
         }
@@ -63,7 +63,7 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 11)
     private int uglyscoreboardfix$modifyX2(int x2) {
-        if (Settings.Sidebar.Position.getX() == HorizontalPosition.LEFT) {
+        if (ModConfig.Sidebar.Position.getX() == HorizontalPosition.LEFT) {
             return x2 - xShift;
         }
         return x2;
@@ -71,23 +71,23 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 3)
     private int uglyscoreboardfix$modifyY(int y) {
-        return MathHelper.clamp(y + Settings.Sidebar.Position.getYOffset(), (y - scaledHeight / 2) * 3 + 9 + 1, scaledHeight - 1);
+        return MathHelper.clamp(y + ModConfig.Sidebar.Position.getYOffset(), (y - scaledHeight / 2) * 3 + 9 + 1, scaledHeight - 1);
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 8)
     private int uglyscoreboardfix$modifyHeadingBackgroundColor(int color) {
-        return Settings.Sidebar.Background.getHeadingColor();
+        return ModConfig.Sidebar.Background.getHeadingColor();
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 7)
     private int uglyscoreboardfix$modifyBackgroundColor(int color) {
-        return Settings.Sidebar.Background.getColor();
+        return ModConfig.Sidebar.Background.getColor();
     }
 
     @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 1))
     private int uglyscoreboardfix$drawHeadingText(TextRenderer textRenderer, MatrixStack matrices, Text text, float x, float y, int color) {
-        color = Settings.Sidebar.Text.getHeadingColor().getRgb();
-        if (Settings.Sidebar.Text.isHeadingShadow()) {
+        color = ModConfig.Sidebar.Text.getHeadingColor().getRgb();
+        if (ModConfig.Sidebar.Text.isHeadingShadow()) {
             return textRenderer.drawWithShadow(matrices, text, x, y, color);
         }
         return textRenderer.draw(matrices, text, x, y, color);
@@ -95,8 +95,8 @@ public abstract class InGameHudMixin {
 
     @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 0))
     private int uglyscoreboardfix$drawText(TextRenderer textRenderer, MatrixStack matrices, Text text, float x, float y, int color) {
-        color = Settings.Sidebar.Text.getColor().getRgb();
-        if (Settings.Sidebar.Text.isShadow()) {
+        color = ModConfig.Sidebar.Text.getColor().getRgb();
+        if (ModConfig.Sidebar.Text.isShadow()) {
             return textRenderer.drawWithShadow(matrices, text, x, y, color);
         }
         return textRenderer.draw(matrices, text, x, y, color);
@@ -105,8 +105,8 @@ public abstract class InGameHudMixin {
     @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Ljava/lang/String;FFI)I", ordinal = 0))
     private int uglyscoreboardfix$drawScoreText(TextRenderer textRenderer, MatrixStack matrices, String text, float x, float y, int color) {
         text = Formatting.strip(text);
-        color = Settings.Sidebar.Text.getScoreColor().getRgb();
-        if (Settings.Sidebar.Text.isScoreShadow()) {
+        color = ModConfig.Sidebar.Text.getScoreColor().getRgb();
+        if (ModConfig.Sidebar.Text.isScoreShadow()) {
             return textRenderer.drawWithShadow(matrices, text, x, y, color);
         }
         return textRenderer.draw(matrices, text, x, y, color);
@@ -115,7 +115,7 @@ public abstract class InGameHudMixin {
     @Inject(method = "renderScoreboardSidebar", at = @At("TAIL"))
     private void uglyscoreboardfix$pop(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
         matrices.pop();
-        float scale = Settings.Sidebar.getScale();
+        float scale = ModConfig.Sidebar.getScale();
         scaledWidth *= scale;
         scaledHeight *= scale;
     }

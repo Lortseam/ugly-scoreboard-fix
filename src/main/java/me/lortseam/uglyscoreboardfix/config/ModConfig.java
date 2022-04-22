@@ -15,9 +15,9 @@ import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.Formatting;
 
-public final class Settings extends Config implements ConfigContainer {
+public final class ModConfig extends Config implements ConfigContainer {
 
-    public Settings() {
+    public ModConfig() {
         super(UglyScoreboardFix.MOD_ID);
     }
 

@@ -1,6 +1,6 @@
 package me.lortseam.uglyscoreboardfix.mixin;
 
-import me.lortseam.uglyscoreboardfix.config.Settings;
+import me.lortseam.uglyscoreboardfix.config.ModConfig;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,8 +13,8 @@ public abstract class KeyBindingMixin {
 
     @Inject(method = "onKeyPressed", at = @At("RETURN"))
     private static void uglyscoreboardfix$onKey(InputUtil.Key key, CallbackInfo ci) {
-        if (key == Settings.Sidebar.Hiding.getToggleKeyBind()) {
-            Settings.Sidebar.Hiding.toggle();
+        if (key == ModConfig.Sidebar.Hiding.getToggleKeyBind()) {
+            ModConfig.Sidebar.Hiding.toggle();
         }
     }
 
