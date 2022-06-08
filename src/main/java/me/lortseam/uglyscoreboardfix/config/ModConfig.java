@@ -22,7 +22,7 @@ public final class ModConfig extends Config implements ConfigContainer {
     }
 
     @Transitive
-    @ConfigEntries
+    @ConfigEntries(includeAll = true)
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static final class Sidebar implements ConfigGroup {
 
@@ -31,7 +31,7 @@ public final class ModConfig extends Config implements ConfigContainer {
         private static float scale = 1;
 
         @Transitive
-        @ConfigEntries
+        @ConfigEntries(includeAll = true)
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Position implements ConfigGroup {
 
@@ -44,7 +44,7 @@ public final class ModConfig extends Config implements ConfigContainer {
         }
 
         @Transitive
-        @ConfigEntries
+        @ConfigEntries(includeAll = true)
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Text implements ConfigGroup {
 
@@ -64,7 +64,7 @@ public final class ModConfig extends Config implements ConfigContainer {
         }
 
         @Transitive
-        @ConfigEntries
+        @ConfigEntries(includeAll = true)
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Background implements ConfigGroup {
 
@@ -78,7 +78,7 @@ public final class ModConfig extends Config implements ConfigContainer {
         }
 
         @Transitive
-        @ConfigEntries
+        @ConfigEntries(includeAll = true)
         @NoArgsConstructor(access = AccessLevel.PRIVATE)
         public static final class Hiding implements ConfigGroup {
 
