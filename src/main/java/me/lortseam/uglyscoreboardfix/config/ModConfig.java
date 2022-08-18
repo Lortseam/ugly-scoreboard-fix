@@ -9,6 +9,7 @@ import me.lortseam.completeconfig.api.ConfigEntry;
 import me.lortseam.completeconfig.api.ConfigGroup;
 import me.lortseam.completeconfig.data.Config;
 import me.lortseam.uglyscoreboardfix.UglyScoreboardFix;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.scoreboard.ScoreboardPlayerScore;
@@ -90,8 +91,12 @@ public final class ModConfig extends Config implements ConfigContainer {
             private static InputUtil.Key toggleKeyBind = InputUtil.UNKNOWN_KEY;
             @ConfigEntries.Exclude
             private static boolean overrideHide = false;
+            private static boolean hideOnDebug = true;
 
             public static boolean shouldHide(HidePart part, ScoreboardObjective objective) {
+                if (overrideHide || hideOnDebug && MinecraftClient.getInstance().options.debugEnabled) {
+                    return true;
+                }
                 return part == hidePart && state.test(objective) || overrideHide;
             }
 

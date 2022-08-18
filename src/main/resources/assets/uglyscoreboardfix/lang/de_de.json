@@ -10,6 +10,7 @@
   "config.uglyscoreboardfix.sidebar.hiding.state.disabled": "Deaktiviert",
   "config.uglyscoreboardfix.sidebar.hiding.state.tooltip": "Bestimmt, ob der ausgewählte Teil des Scoreboards ausgeblendet wird oder nicht.\nAktiviert - Immer eingeschaltet.\nAutomatisch - Nur bei einer aufeinanderfolgenden Reihenfolge der Punkte aktiviert.\nDeaktiviert - Ausgeschaltet.",
   "config.uglyscoreboardfix.sidebar.hiding.toggleKeyBind": "Keybind zum manuellen Ausblenden/Einblenden",
+  "config.uglyscoreboardfix.sidebar.hiding.hideOnDebug": "Sidebar ausblenden wenn das Debug-HUD eingeblendet ist",
   "config.uglyscoreboardfix.sidebar.position": "Position",
   "config.uglyscoreboardfix.sidebar.position.x": "Horizontal",
   "config.uglyscoreboardfix.sidebar.position.x.right": "Rechts",
