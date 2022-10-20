@@ -9,8 +9,8 @@
   ],
   "contact": {
     "email": "lortseam@gmail.com",
-    "sources": "https://gitlab.com/Lortseam/ugly-scoreboard-fix",
-    "issues": "https://gitlab.com/Lortseam/ugly-scoreboard-fix/-/issues"
+    "sources": "https://github.com/Lortseam/ugly-scoreboard-fix",
+    "issues": "https://github.com/Lortseam/ugly-scoreboard-fix/-/issues"
   },
   "license": "Apache-2.0",
   "environment": "client",
