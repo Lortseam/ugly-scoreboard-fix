@@ -112,6 +112,11 @@ public abstract class InGameHudMixin {
         return textRenderer.draw(matrices, text, x, y, color);
     }
 
+    @ModifyConstant(method = "renderScoreboardSidebar", constant = @Constant(intValue = 15))
+    private int uglyscoreboardfix$modifyMaxLineCount(int maxLineCount) {
+        return ModConfig.Sidebar.getMaxLineCount();
+    }
+
     @Inject(method = "renderScoreboardSidebar", at = @At("TAIL"))
     private void uglyscoreboardfix$pop(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
         matrices.pop();

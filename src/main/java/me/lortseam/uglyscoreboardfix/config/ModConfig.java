@@ -30,6 +30,9 @@ public final class ModConfig extends Config implements ConfigContainer {
         @Getter
         @ConfigEntry.BoundedFloat(min = 0.1f, max = 10)
         private static float scale = 1;
+        @Getter
+        @ConfigEntry.BoundedInteger(min = 1)
+        private static int maxLineCount = 15;
 
         @Transitive
         @ConfigEntries(includeAll = true)
