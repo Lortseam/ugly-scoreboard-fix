@@ -11,6 +11,7 @@
   "config.uglyscoreboardfix.sidebar.hiding.state.description": "Defines whether to hide the selected scoreboard part or not.\nEnabled - Always enabled.\nAuto - Enabled only when scores are in consecutive order.\nDisabled - Disabled.",
   "config.uglyscoreboardfix.sidebar.hiding.toggleKeyBind": "Key-binding to manually toggle sidebar visibility",
   "config.uglyscoreboardfix.sidebar.hiding.hideOnDebug": "Hide the sidebar while the debug HUD is displayed",
+  "config.uglyscoreboardfix.sidebar.hiding.hideTitle": "Hide Title",
   "config.uglyscoreboardfix.sidebar.position": "Position",
   "config.uglyscoreboardfix.sidebar.position.x": "Horizontal",
   "config.uglyscoreboardfix.sidebar.position.x.right": "Right",

@@ -7,6 +7,7 @@ import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.scoreboard.ScoreboardObjective;
+import net.minecraft.scoreboard.ScoreboardPlayerScore;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.MathHelper;
@@ -15,6 +16,8 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import java.util.Collection;
 
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
@@ -26,7 +29,7 @@ public abstract class InGameHudMixin {
 
     @Inject(method = "renderScoreboardSidebar", at = @At("HEAD"), cancellable = true)
     private void uglyscoreboardfix$hideOrScale(MatrixStack matrices, ScoreboardObjective objective, CallbackInfo ci) {
-        if (ModConfig.Sidebar.Hiding.shouldHide(HidePart.SIDEBAR, objective)) {
+        if (ModConfig.Sidebar.Hiding.hide(HidePart.SIDEBAR, objective)) {
             ci.cancel();
             return;
         }
@@ -39,17 +42,17 @@ public abstract class InGameHudMixin {
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 0)
     private String uglyscoreboardfix$modifyScore(String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return ModConfig.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? "" : score;
+        return ModConfig.Sidebar.Hiding.hide(HidePart.SCORES, objective) ? "" : score;
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 2)
     private int uglyscoreboardfix$modifySeperatorWidth(int seperatorWidth, MatrixStack matrices, ScoreboardObjective objective) {
-        return ModConfig.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
+        return ModConfig.Sidebar.Hiding.hide(HidePart.SCORES, objective) ? 0 : seperatorWidth;
     }
 
     @Redirect(method = "renderScoreboardSidebar", slice = @Slice(from = @At(value = "INVOKE", target = "Ljava/util/Iterator;hasNext()Z")), at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;getWidth(Ljava/lang/String;)I", ordinal = 0))
     private int uglyscoreboardfix$modifyScoreWidth(TextRenderer textRenderer, String score, MatrixStack matrices, ScoreboardObjective objective) {
-        return ModConfig.Sidebar.Hiding.shouldHide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
+        return ModConfig.Sidebar.Hiding.hide(HidePart.SCORES, objective) ? 0 : textRenderer.getWidth(score);
     }
 
     @ModifyVariable(method = "renderScoreboardSidebar", at = @At(value = "STORE", ordinal = 0), ordinal = 5)
@@ -115,6 +118,14 @@ public abstract class InGameHudMixin {
     @ModifyConstant(method = "renderScoreboardSidebar", constant = @Constant(intValue = 15))
     private int uglyscoreboardfix$modifyMaxLineCount(int maxLineCount) {
         return ModConfig.Sidebar.getMaxLineCount();
+    }
+
+    @Redirect(method = "renderScoreboardSidebar", at = @At(value = "INVOKE", target = "Ljava/util/Collection;size()I", ordinal = 3))
+    private int uglyscoreboardfix$hideTitle(Collection<ScoreboardPlayerScore> collection) {
+        if (ModConfig.Sidebar.Hiding.hideTitle()) {
+            return 0;
+        }
+        return collection.size();
     }
 
     @Inject(method = "renderScoreboardSidebar", at = @At("TAIL"))

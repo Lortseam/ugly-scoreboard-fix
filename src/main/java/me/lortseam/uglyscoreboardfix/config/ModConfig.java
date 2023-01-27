@@ -3,6 +3,7 @@ package me.lortseam.uglyscoreboardfix.config;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import me.lortseam.completeconfig.api.ConfigContainer;
 import me.lortseam.completeconfig.api.ConfigEntries;
 import me.lortseam.completeconfig.api.ConfigEntry;
@@ -90,13 +91,16 @@ public final class ModConfig extends Config implements ConfigContainer {
             private static State state = State.AUTO;
             @ConfigEntry(comment = "SCORES or SIDEBAR")
             private static HidePart hidePart = HidePart.SCORES;
+            @Accessors(fluent = true)
+            @Getter
+            private static boolean hideTitle = false;
             @Getter
             private static InputUtil.Key toggleKeyBind = InputUtil.UNKNOWN_KEY;
             @ConfigEntries.Exclude
             private static boolean overrideHide = false;
             private static boolean hideOnDebug = true;
 
-            public static boolean shouldHide(HidePart part, ScoreboardObjective objective) {
+            public static boolean hide(HidePart part, ScoreboardObjective objective) {
                 if (overrideHide || hideOnDebug && MinecraftClient.getInstance().options.debugEnabled) {
                     return true;
                 }
