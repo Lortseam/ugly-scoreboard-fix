@@ -17,6 +17,9 @@
   "entrypoints": {
     "client": [
       "me.lortseam.uglyscoreboardfix.UglyScoreboardFix"
+    ],
+    "modmenu": [
+      "me.lortseam.uglyscoreboardfix.config.ModMenuIntegration"
     ]
   },
   "mixins": [
