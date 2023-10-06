@@ -101,7 +101,7 @@ public final class ModConfig extends Config implements ConfigContainer {
             private static boolean hideOnDebug = true;
 
             public static boolean hide(HidePart part, ScoreboardObjective objective) {
-                if (overrideHide || hideOnDebug && MinecraftClient.getInstance().options.debugEnabled) {
+                if (overrideHide || hideOnDebug && MinecraftClient.getInstance().getDebugHud().shouldShowDebugHud()) {
                     return true;
                 }
                 return part == hidePart && state.test(objective) || overrideHide;
