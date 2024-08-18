@@ -4,10 +4,11 @@
   "package": "me.lortseam.uglyscoreboardfix.mixin",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "InGameHudMixin",
-    "KeyBindingMixin"
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "mixins": [
+  ]
 }
